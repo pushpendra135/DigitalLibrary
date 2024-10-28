@@ -1,5 +1,6 @@
 package com.pk.DigitalLibrary.entity;
 
+import com.pk.DigitalLibrary.enums.Category;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,13 +30,8 @@ public class Book {
     private String description;
 
 
-    private Category category;
+    public Category category;
 
-
-    public enum Category {
-        FICTION,
-        NON_FICTION
-    }
 }
 
 

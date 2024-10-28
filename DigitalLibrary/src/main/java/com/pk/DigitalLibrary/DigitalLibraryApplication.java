@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DigitalLibraryApplication {
 
 	public static void main(String[] args) {
-		System.out.println("Hello World");
+		System.out.println("Welcome to Digital Library Application");
 		SpringApplication.run(DigitalLibraryApplication.class, args);
 	}
 }

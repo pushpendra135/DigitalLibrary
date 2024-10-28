@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 //Business Logic inside service
 @Service
@@ -17,7 +18,6 @@ public class BookService {
 
     @Autowired
     public BookService(BookRespository bookRepository) {
-
         this.bookRepository = bookRepository;
     }
 
@@ -30,5 +30,9 @@ public class BookService {
 
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
+    }
+
+    public Book getBookById(UUID BookId) {
+        return bookRepository.findById(BookId).orElse(null);
     }
 }
