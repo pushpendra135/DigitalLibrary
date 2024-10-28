@@ -49,10 +49,10 @@ public class MemberController {
         return new ResponseEntity<>(member, HttpStatus.OK);
     }
 
-    @PutMapping({"updateMember/{id} "})
-    public ResponseEntity<Member> updateMember(@PathVariable UUID id, @RequestBody Member updatedMember) {
+    @PutMapping({"/updateMember/{mobile}"})
+    public ResponseEntity<Member> updateMember(@PathVariable String mobile, @RequestBody Member updatedMember) {
         try {
-            Member updated = memberService.updateMember(id, updatedMember);
+            Member updated = memberService.updateMember(mobile, updatedMember);
             return ResponseEntity.ok(updated);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();

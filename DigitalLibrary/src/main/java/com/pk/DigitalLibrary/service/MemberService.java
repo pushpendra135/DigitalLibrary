@@ -40,8 +40,8 @@ public class MemberService {
         return this.memberRespository.findByEmail(email).orElse(null);
     }
 
-    public Member updateMember(UUID id, Member updatedMember) {
-        Optional<Member> optionalMember = memberRespository.findById(id);
+    public Member updateMember(String mobile, Member updatedMember) {
+        Optional<Member> optionalMember = this.memberRespository.findByMobileNumber(mobile);
 
         if (optionalMember.isPresent()) {
             Member existingMember = optionalMember.get();
@@ -51,10 +51,9 @@ public class MemberService {
             existingMember.setEmail(updatedMember.getEmail());
             existingMember.setMobileNumber(updatedMember.getMobileNumber());
 
-            // Save the updated member to the database
             return memberRespository.save(existingMember);
         } else {
-            throw new RuntimeException("Member not found with id: " + id);
+            throw new RuntimeException("Member not found with id: " + mobile);
         }
     }
 }
