@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -37,5 +38,23 @@ public class MemberService {
     }
     public Member getMemberByEmail(String email){
         return this.memberRespository.findByEmail(email).orElse(null);
+    }
+
+    public Member updateMember(UUID id, Member updatedMember) {
+        Optional<Member> optionalMember = memberRespository.findById(id);
+
+        if (optionalMember.isPresent()) {
+            Member existingMember = optionalMember.get();
+
+            // Updated fields
+            existingMember.setFirstName(updatedMember.getFirstName());
+            existingMember.setEmail(updatedMember.getEmail());
+            existingMember.setMobileNumber(updatedMember.getMobileNumber());
+
+            // Save the updated member to the database
+            return memberRespository.save(existingMember);
+        } else {
+            throw new RuntimeException("Member not found with id: " + id);
+        }
     }
 }
